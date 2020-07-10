@@ -1,4 +1,4 @@
-const url = 'https://random-word-api.herokuapp.com/word?number=5'
+const url = 'https://random-word-api.herokuapp.com/word?number=10'
 const wordInput = document.querySelector("#word-input");
 const scoreDisplay = document.querySelector("#score");
 const message = document.querySelector("#message");
@@ -8,6 +8,7 @@ const gameTime = 5;
 let time = gameTime;
 let isPlaying = true;
 
+const overlap = [];
 
 // const words = ['good', 'bad', 'sad', 'cry', 'smile'];
 const words = [];
@@ -72,13 +73,20 @@ function startMatch() {
         wordInput.value = ""; //input 창 초기화
         message.innerHTML = "Correct!";
 
-        // console.log(randomIndex);
-        // for (i = 0; i < words.length; i++) {
 
-        // }
         const randomIndex = Math.floor(Math.random() * words.length);
-        console.log(randomIndex);
+        // console.log(overlap.includes(words[randomIndex]));
+
+
+        if (overlap.includes(words[randomIndex])) {
+            console.log('중복');
+
+        } else if (!overlap.includes(words[randomIndex])) {
+            console.log('x');
+        }
         currentWorld.innerHTML = words[randomIndex];
+        overlap.push(words[randomIndex]);
+        console.log(overlap);
     } else {
         message.innerHTML = '';
     }
@@ -89,3 +97,7 @@ function startMatch() {
         scoreDisplay.innerHTML = score;
     }
 }
+
+// function overLap() {
+//     if ()
+// }
